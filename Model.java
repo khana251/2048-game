@@ -189,24 +189,66 @@ public class Model{
    * @details Does the moving up operation on the board
    */
 
-  public void moveUp()
-  {
-    for(int i = 1; i < 3; i++)
-    {
-      for(int j = 0; j < 3; j++)
-      {
-        if(gameBoard.get(i).get(j) == gameBoard.get(i-1).get(j))
-        {
-          gameBoard.get(i-1).set(j,gameBoard.get(i).get(j));
+//  public void moveUp()
+//  {
+//    for(int i = 3; i > 0; i--)
+//    {
+//      for(int j = 3; j > 0; j--)
+//      {
+//        if(gameBoard.get(i).get(j) == gameBoard.get(i-1).get(j))
+//        {
+//          gameBoard.get(i-1).set(j,gameBoard.get(i).get(j));
+//          gameBoard.get(i).set(j, 0);
+//        }
+//        else if(gameBoard.get(i).get(j) == 0)
+//        {
+//          gameBoard.get(i-1).set(j, gameBoard.get(i).get(j));
+//          gameBoard.get(i).set(j,0);
+//        }
+//      }
+//    }
+//    addTwoOrFour();
+//  }
+
+  public void transpose(){
+    for (int i = 0; i < 4; i++){
+      for (int j = 0; j < 4; j ++){
+        int temp = gameBoard.get(i).get(j);
+        gameBoard.get(i).set(j, gameBoard.get(j).get(i));
+        gameBoard.get(j).set(i, temp);
+
+      }
+    }
+  }
+
+  public void flip(){
+    for (int i = 0; i < 4; i++){
+      for (int j = 0; j < 4; j++){
+        int temp = gameBoard.get(i).get(j);
+        gameBoard.get(i).set(j, gameBoard.get(i).get(4-j-1));
+        gameBoard.get(i).set(4-j-1, temp);
+      }
+    }
+  }
+
+  public void moveUp(){
+    transpose();
+    flip();
+    for (int i = 0; i <= 3; i++){
+      for (int j = 0; j <= 2; j++){
+        if (gameBoard.get(i).get(j) == gameBoard.get(i).get(j+1)){
+          gameBoard.get(i).set(j+1,gameBoard.get(i).get(j) + gameBoard.get(i).get(j+1));
           gameBoard.get(i).set(j, 0);
+
         }
-        else if(gameBoard.get(i).get(j) == 0)
-        {
-          gameBoard.get(i-1).set(j, gameBoard.get(i).get(j));
+        else while(gameBoard.get(i).get(j+1) == 0){
+          gameBoard.get(i).set(j+1,gameBoard.get(i).get(j));
           gameBoard.get(i).set(j,0);
         }
       }
     }
+    flip();
+    transpose();
     addTwoOrFour();
   }
 
