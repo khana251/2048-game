@@ -85,22 +85,6 @@ public class Model{
     addTwoOrFour();
   }
 
-  /**
-   * @brief return greatest number
-   * @details Loops through all the board elements and returns the greatest number
-   */
-
-  public int greatestNum(){
-    int greatest = gameBoard.get(0).get(0);
-    for(int i = 0; i < 4; i++){
-      for(int j =0; j < 4; j++){
-        if (gameBoard.get(i).get(j) > greatest){
-          greatest = gameBoard.get(i).get(j);
-        }
-      }
-    }
-    return greatest;
-  }
 
   /**
    * @brief Win condition
@@ -112,6 +96,7 @@ public class Model{
       for (int j = 0; j < 4; j++){
         if (gameBoard.get(i).get(j) == 2048){
           System.out.println("YOU WIN!");
+          System.exit(0);
           return true;
         }
       }
@@ -134,6 +119,8 @@ public class Model{
       }
     }
     if (full == 16){
+      System.out.println("You loose");
+      System.exit(0);
       return true;
     }
     return false;
