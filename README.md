@@ -1,4 +1,4 @@
-2048-Game(Java)
+2048-Game
 
 Coded completely in Java. 
 
