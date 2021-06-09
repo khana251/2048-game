@@ -212,18 +212,20 @@ public class Model{
 
   public void transpose(){
     for (int i = 0; i < 4; i++){
-      for (int j = 0; j < 4; j ++){
-        int temp = gameBoard.get(i).get(j);
-        gameBoard.get(i).set(j, gameBoard.get(j).get(i));
-        gameBoard.get(j).set(i, temp);
-
+      for (int j = i+1; j < 4; j++){
+//        int temp = gameBoard.get(j).get(i);
+//        gameBoard.get(j).set(i, gameBoard.get(i).get(j));
+//        gameBoard.get(i).set(j, temp);
+        int temp = gameBoard.get(j).get(i);
+        gameBoard.get(j).set(i, gameBoard.get(i).get(j));
+        gameBoard.get(i).set(j, temp);
       }
     }
   }
 
   public void flip(){
     for (int i = 0; i < 4; i++){
-      for (int j = 0; j < 4; j++){
+      for (int j = 0; j < 2; j++){
         int temp = gameBoard.get(i).get(j);
         gameBoard.get(i).set(j, gameBoard.get(i).get(4-j-1));
         gameBoard.get(i).set(4-j-1, temp);
@@ -233,6 +235,7 @@ public class Model{
 
   public void moveUp(){
     transpose();
+    displayBoard();
     flip();
     for (int i = 0; i <= 3; i++){
       for (int j = 0; j <= 2; j++){
@@ -257,24 +260,24 @@ public class Model{
    * @details Does the moving down operation on the board
    */
 
-  public void moveDown()
-  {
-    for(int i = 1; i < 3; i++)
-    {
-      for(int j = 0; j < 3; j++)
-      {
-        if(gameBoard.get(i).get(j) == gameBoard.get(i+1).get(j))
-        {
-          gameBoard.get(i).set(j,gameBoard.get(i+1).get(j));
-          gameBoard.get(i+1).set(j, 0);
+  public void moveDown(){
+    transpose();
+    flip();
+    for (int i = 3; i >= 0; i--){
+      for (int j = 2; j >= 0; j--){
+        if (gameBoard.get(i).get(j) == gameBoard.get(i).get(j+1)){
+          gameBoard.get(i).set(j,gameBoard.get(i).get(j) + gameBoard.get(i).get(j+1));
+          gameBoard.get(i).set(j+1, 0);
+
         }
-        else if(gameBoard.get(i+1).get(j) == 0)
-        {
-          gameBoard.get(i).set(j, gameBoard.get(i+1).get(j));
-          gameBoard.get(i+1).set(j,0);
+        else while(gameBoard.get(i).get(j) == 0){
+          gameBoard.get(i).set(j,gameBoard.get(i).get(j+1));
+          gameBoard.get(i).set(j+1,0);
         }
       }
     }
+    flip();
+    transpose();
     addTwoOrFour();
   }
 
