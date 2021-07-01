@@ -1,8 +1,8 @@
-#2048-Game#
+# 2048-Game #
 
-##Coded completely in Java.##
+## Coded completely in Java. ##
 
-*To play the game, run View.java*
+* To play the game, run View.java *
 
 Some quick features:
 
