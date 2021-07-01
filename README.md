@@ -2,7 +2,7 @@
 
 ## Coded completely in Java. ##
 
-* To play the game, run View.java *
+** To play the game, run View.java **
 
 Some quick features:
 
