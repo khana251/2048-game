@@ -3,6 +3,8 @@
 ## Coded completely in Java. ##
 
 **To play the game, run View.java**
+- When prompted enter the grid size (eg: Enter 7 for a 7x7 grid)
+- Continue playing by typing one of w, a, s, or d in the terminal
 
 Some quick features:
 
